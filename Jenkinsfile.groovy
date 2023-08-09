@@ -33,7 +33,7 @@ pipeline
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     git 'https://github.com/djmishra2709/PlaywrightAutomation.git'
-                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testRunners/testng_regressions.xml"
+                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testRunners/testng_regression.xml"
                     
                 }
             }
