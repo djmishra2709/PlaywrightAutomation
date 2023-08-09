@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="ApplicationDemo" parallel="tests" verbose="4">
-    <listeners>
-        <listener class-name="com.qa.app.Listeners.ExtentReportListener"/>
-    </listeners>
-    <test name="Homepage">
+<suite name="ApplicationDemo" verbose="4">
+    <test name="PlaywrightAPI" parallel="methods">
         <classes>
-            <class name = "com.qa.app.tests.HomePageTest"/>
+            <class name = "com.qa.app.tests.PlaywrightAPI"/>
+            <class name = "com.qa.app.tests.PlaywrightScriptUI"/>
         </classes>
     </test>
-    <test name="Loginpage">
-        <classes>
-            <class name = "com.qa.app.tests.LoginPageTest"/>
-        </classes>
-    </test>
+
   </suite>
