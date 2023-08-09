@@ -10,15 +10,27 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Maven project
-                bat 'mvn clean install'
+                bat 'mvn clean'
             }
         }
         stage('Test') {
             steps {
                 // Run the tests
-                bat 'mvn test'
+                bat 'mvn install'
             }
         }
 
+        stage('Publish Extent Report') {
+            steps {
+                publishHTML([allowMissing         : false,
+                             alwaysLinkToLastBuild: false,
+                             keepAll              : true,
+                             reportDir            : 'build',
+                             reportFiles          : 'TestExecutionReport.html',
+                             reportName           : 'HTML Extent Report',
+                             reportTitles         : ''])
+            }
+
+        }
     }
 }
