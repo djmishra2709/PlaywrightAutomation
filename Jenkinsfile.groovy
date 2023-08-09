@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-       /* stage ('Send Email') {
+        stage ('Send Email') {
             steps {
 
                 mail to: "djmishra2709@gmail.com",
@@ -30,7 +30,7 @@ pipeline {
                         subject: "CI: Project name -> ${env.JOB_NAME}",
                         body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}"
             }
-        }*/
+        }
 
         }
     }
