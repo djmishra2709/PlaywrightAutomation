@@ -23,7 +23,7 @@ pipeline {
         stage ('Send Email') {
             steps {
 
-                mail to: "djmishra2709@gmail.com",
+                mail to: "djmishra2709@xxmail.com",
                         cc: 'manager@domainxxx.com', charset: 'UTF-8',
                         from: 'Jenkinsnoreply@gmail.com', mimeType: 'text/html', replyTo: '',
                         bcc: '',
