@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the source code from Git
-                git branch: 'main', url: 'https://github.com/djmishra2709/PlaywrightAutomation.git'
+                git branch: 'master', url: 'https://github.com/djmishra2709/PlaywrightAutomation.git'
             }
         }
         stage('Build') {
