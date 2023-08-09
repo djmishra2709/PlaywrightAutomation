@@ -10,20 +10,15 @@ pipeline {
         stage('Build') {
             steps {
                 // Build the Maven project
-                sh 'mvn clean install'
+                bat 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
                 // Run the tests
-                sh 'mvn test'
+                bat 'mvn test'
             }
         }
-        stage('Deploy') {
-            steps {
-                // Deploy the build artifacts
-                sh 'mvn deploy'
-            }
-        }
+
     }
 }
