@@ -1,59 +1,29 @@
-pipeline 
-{
+pipeline {
     agent any
-    
-       stages
-    {
-        stage('Build') 
-        {
-            steps
-            {
-                 git 'https://github.com/djmishra2709/PlaywrightAutomation.git'
-                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-            post 
-            {
-                success
-                {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
-            }
-        }
-        
-        
-        
-        stage("Deploy to QA"){
-            steps{
-                echo("deploy to qa")
-            }
-        }
-                
-        stage('Regression Automation Test') {
+    stages {
+        stage('Checkout') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    git 'https://github.com/djmishra2709/PlaywrightAutomation.git'
-                    sh "mvn clean test -Dsurefire.suiteXmlFiles=src/test/resources/testRunners/testng_regression.xml"
-                    
-                }
+                // Checkout the source code from Git
+                git branch: 'main', url: 'https://github.com/djmishra2709/PlaywrightAutomation.git'
             }
         }
-        
-        
-        stage('Publish Extent Report'){
-            steps{
-                     publishHTML([allowMissing: false,
-                                  alwaysLinkToLastBuild: false, 
-                                  keepAll: true, 
-                                  reportDir: 'build',
-                                  reportFiles: 'TestExecutionReport.html', 
-                                  reportName: 'HTML Extent Report', 
-                                  reportTitles: ''])
+        stage('Build') {
+            steps {
+                // Build the Maven project
+                sh 'mvn clean install'
             }
         }
-        
-        
-        
-        
+        stage('Test') {
+            steps {
+                // Run the tests
+                sh 'mvn test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                // Deploy the build artifacts
+                sh 'mvn deploy'
+            }
+        }
     }
 }
