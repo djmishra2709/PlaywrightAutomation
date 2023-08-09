@@ -20,17 +20,17 @@ pipeline {
             }
         }
 
-        stage ('Send Email') {
+    /*    stage ('Send Email') {
             steps {
 
-                mail to: "djmishra2709@xxmail.com",
+                mail to: "djmishra2709@gmail.com",
                         cc: 'manager@domainxxx.com', charset: 'UTF-8',
                         from: 'Jenkinsnoreply@gmail.com', mimeType: 'text/html', replyTo: '',
                         bcc: '',
                         subject: "CI: Project name -> ${env.JOB_NAME}",
                         body: "<b>Example</b><br>Project: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> URL de build: ${env.BUILD_URL}"
             }
-        }
+        }*/
 
         }
     }
